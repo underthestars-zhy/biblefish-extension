@@ -23,6 +23,6 @@ var count = 0;
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const paragraphs = document.getElementsByTagName('p');
 
-  Array.from(paragraphs)[count].innerHTML = request
+  Array.from(paragraphs)[count].innerHTML = request === 'nothing' ? '' : request
   count += 1
 })
