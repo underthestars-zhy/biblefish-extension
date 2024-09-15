@@ -1,11 +1,14 @@
-function extractParagraphText() {
+function extractParagraphContent() {
   const paragraphs = document.getElementsByTagName('p');
-  const textContent = Array.from(paragraphs).map(p => p.textContent);
-  return textContent;
+  const content = Array.from(paragraphs).map(p => ({
+    text: p.textContent,
+    raw: p.innerHTML
+  }));
+  return content;
 }
 
 // Extract the text
-const paragraphText = extractParagraphText();
+const paragraphText = extractParagraphContent();
 
 // Send the extracted text to the background script
 setTimeout(() => {
@@ -20,6 +23,6 @@ var count = 0;
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   const paragraphs = document.getElementsByTagName('p');
 
-  Array.from(paragraphs)[count].textContent = request
+  Array.from(paragraphs)[count].innerHTML = request
   count += 1
 })
