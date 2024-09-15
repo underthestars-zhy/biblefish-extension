@@ -1,7 +1,8 @@
-import React, {useState, ChangeEvent, useEffect} from 'react';
-import {createRoot} from "react-dom/client";
+import React, { useState, ChangeEvent, useEffect } from 'react';
+import { createRoot } from "react-dom/client";
+import { ChevronDown } from 'lucide-react';
 
-type HSKLevel = 1 | 2 | 3 | 4 | 5 | 6
+type HSKLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 const ChineseLanguageLevelSelector: React.FC = () => {
     const [level, setLevel] = useState<HSKLevel | ''>('');
@@ -22,55 +23,59 @@ const ChineseLanguageLevelSelector: React.FC = () => {
             }
         });
     }, []);
-    // Styles
+
+    // Updated styles with light blue accent
     const styles = {
         container: {
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-            width: '300px',
-            margin: '20px auto',
-            padding: '20px 0',
+            fontFamily: "'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+            width: '320px',
+            margin: '30px auto',
+            padding: '30px',
+            backgroundColor: '#ffffff',
+            borderRadius: '12px',
+            boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)',
+            border: '1px solid #e6f2ff',
         },
         title: {
             fontSize: '24px',
-            fontWeight: 600,
-            color: '#2c3e50',
-            marginBottom: '20px',
-            textAlign: 'center',
+            fontWeight: 700,
+            color: '#2c5282', // Darker blue for the title
+            marginBottom: '24px',
+            textAlign: 'center' as const,
         },
         selectContainer: {
-            position: 'relative',
-            marginBottom: '25px',
+            position: 'relative' as const,
+            marginBottom: '28px',
         },
         select: {
             width: '100%',
-            padding: '12px 20px',
+            padding: '14px 20px',
             fontSize: '16px',
-            border: '2px solid #ddd',
-            borderRadius: '6px',
-            backgroundColor: '#ffffff',
-            appearance: 'none',
+            border: '2px solid #bee3f8', // Light blue border
+            borderRadius: '8px',
+            backgroundColor: '#f0f9ff', // Very light blue background
+            '-webkit-appearance': 'none', // Updated for compatibility
+            '-moz-appearance': 'none', // Updated for compatibility
             cursor: 'pointer',
             transition: 'all 0.3s ease',
+            color: '#2c5282', // Darker blue text
         },
         arrow: {
-            position: 'absolute',
+            position: 'absolute' as const,
             top: '50%',
             right: '15px',
             transform: 'translateY(-50%)',
-            width: 0,
-            height: 0,
-            borderLeft: '6px solid transparent',
-            borderRight: '6px solid transparent',
-            borderTop: '6px solid #555',
-            pointerEvents: 'none',
+            pointerEvents: 'none' as const,
+            color: '#3182ce', // Blue arrow color
         },
         message: {
             fontSize: '18px',
-            color: '#34495e',
-            textAlign: 'center',
-            marginTop: '20px',
+            color: '#2b6cb0', // Slightly darker blue for the message
+            textAlign: 'center' as const,
+            marginTop: '24px',
+            fontWeight: 600,
         }
-    } as const;
+    };
 
     return (
         <div style={styles.container}>
@@ -88,10 +93,10 @@ const ChineseLanguageLevelSelector: React.FC = () => {
                         </option>
                     ))}
                 </select>
-                <div style={styles.arrow}></div>
+                <ChevronDown style={styles.arrow} size={20} />
             </div>
             {level && (
-                <p style={styles.message}>Your selected level: {level}</p>
+                <p style={styles.message}>Your selected level: HSK {level}</p>
             )}
         </div>
     );
